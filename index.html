@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html = style="height: 100%;">
+  <head>
+    <title>Eramor Continent Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="scripts/leaflet.css">
+    <script src="scripts/leaflet.js"></script>
+  </head>
+  
+  <body style="height: 100%;margin: 0;">
+    <div id="map" style="width: 100%; height: 100%; background: #24554d;"></div>
+    <script type="text/javascript">
+  //Creating the Map
+    var map = L.map('map').setView([0, 0], 0);
+    L.tileLayer('map/{z}/{x}/{y}.png', {
+      continuousWorld: false,
+      noWrap: true,  
+      minZoom: 2,
+      maxZoom: 6,
+    }).addTo(map);
+  //Coordinate Finder
+    var marker = L.marker([71.746432, -162.421875], {
+      draggable: true,
+    }).addTo(map);
+    marker.bindPopup('LatLong Marker').openPopup();
+    marker.on('dragend', function(e) {
+      marker.getPopup().setContent(marker.getLatLng().toString()).openOn(map);
+    });
+  //Icons
+	var capitalDR = L.icon({
+		iconUrl:	'icons/capitalDR.png',
+		iconRetinaUrl:	'icons/capitalDR.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var capitalTE = L.icon({
+		iconUrl:	'icons/capitalTE.png',
+		iconRetinaUrl:	'icons/capitalTE.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var capitalWC = L.icon({
+		iconUrl:	'icons/capitalWC.png',
+		iconRetinaUrl:	'icons/capitalWC.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var capitalXD = L.icon({
+		iconUrl:	'icons/capitalXD.png',
+		iconRetinaUrl:	'icons/capitalXD.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var circleDR = L.icon({
+		iconUrl:	'icons/circleDR.png',
+		iconRetinaUrl:	'icons/circleDR.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var circleTE = L.icon({
+		iconUrl:	'icons/circleTE.png',
+		iconRetinaUrl:	'icons/circleTE.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var circleUA = L.icon({
+		iconUrl:	'icons/circleUA.png',
+		iconRetinaUrl:	'icons/circleUA.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var circleWC = L.icon({
+		iconUrl:	'icons/circleWC.png',
+		iconRetinaUrl:	'icons/circleWC.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var circleXD = L.icon({
+		iconUrl:	'icons/circleXD.png',
+		iconRetinaUrl:	'icons/circleXD.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var cityUA = L.icon({
+		iconUrl:	'icons/cityUA.png',
+		iconRetinaUrl:	'icons/cityUA.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var cityDR = L.icon({
+		iconUrl:	'icons/cityDR.png',
+		iconRetinaUrl:	'icons/cityDR.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var cityTE = L.icon({
+		iconUrl:	'icons/cityTE.png',
+		iconRetinaUrl:	'icons/cityTE.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var cityUA = L.icon({
+		iconUrl:	'icons/cityUA.png',
+		iconRetinaUrl:	'icons/cityUA.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var cityWC = L.icon({
+		iconUrl:	'icons/cityWC.png',
+		iconRetinaUrl:	'icons/cityWC.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var cityXD = L.icon({
+		iconUrl:	'icons/cityXD.png',
+		iconRetinaUrl:	'icons/cityXD.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var craftDR = L.icon({
+		iconUrl:	'icons/craftDR.png',
+		iconRetinaUrl:	'icons/craftDR.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var craftTE = L.icon({
+		iconUrl:	'icons/craftTE.png',
+		iconRetinaUrl:	'icons/craftTE.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var craftUA = L.icon({
+		iconUrl:	'icons/craftUA.png',
+		iconRetinaUrl:	'icons/craftUA.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var craftWC = L.icon({
+		iconUrl:	'icons/craftWC.png',
+		iconRetinaUrl:	'icons/craftWC.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var craftXD = L.icon({
+		iconUrl:	'icons/craftXD.png',
+		iconRetinaUrl:	'icons/craftXD.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var druidDR = L.icon({
+		iconUrl:	'icons/druidDR.png',
+		iconRetinaUrl:	'icons/druidDR.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var druidTE = L.icon({
+		iconUrl:	'icons/druidTE.png',
+		iconRetinaUrl:	'icons/druidTE.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var druidUA = L.icon({
+		iconUrl:	'icons/druidUA.png',
+		iconRetinaUrl:	'icons/druidUA.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var druidWC = L.icon({
+		iconUrl:	'icons/druidWC.png',
+		iconRetinaUrl:	'icons/druidWC.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var druidXD = L.icon({
+		iconUrl:	'icons/druidXD.png',
+		iconRetinaUrl:	'icons/druidXD.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var farmDR = L.icon({
+		iconUrl:	'icons/farmDR.png',
+		iconRetinaUrl:	'icons/farmDR.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var farmTE = L.icon({
+		iconUrl:	'icons/farmTE.png',
+		iconRetinaUrl:	'icons/farmTE.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var farmUA = L.icon({
+		iconUrl:	'icons/farmUA.png',
+		iconRetinaUrl:	'icons/farmUA.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var farmWC = L.icon({
+		iconUrl:	'icons/farmWC.png',
+		iconRetinaUrl:	'icons/farmWC.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var farmXD = L.icon({
+		iconUrl:	'icons/farmXD.png',
+		iconRetinaUrl:	'icons/farmXD.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var fieldDR = L.icon({
+		iconUrl:	'icons/fieldDR.png',
+		iconRetinaUrl:	'icons/fieldDR.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var fieldTE = L.icon({
+		iconUrl:	'icons/fieldTE.png',
+		iconRetinaUrl:	'icons/fieldTE.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var fieldUA = L.icon({
+		iconUrl:	'icons/fieldUA.png',
+		iconRetinaUrl:	'icons/fieldUA.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var fieldWC = L.icon({
+		iconUrl:	'icons/fieldWC.png',
+		iconRetinaUrl:	'icons/fieldWC.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var fieldXD = L.icon({
+		iconUrl:	'icons/fieldXD.png',
+		iconRetinaUrl:	'icons/fieldXD.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var huntDR = L.icon({
+		iconUrl:	'icons/huntDR.png',
+		iconRetinaUrl:	'icons/huntDR.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var huntTE = L.icon({
+		iconUrl:	'icons/huntTE.png',
+		iconRetinaUrl:	'icons/huntTE.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var huntUA = L.icon({
+		iconUrl:	'icons/huntUA.png',
+		iconRetinaUrl:	'icons/huntUA.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var huntWC = L.icon({
+		iconUrl:	'icons/huntWC.png',
+		iconRetinaUrl:	'icons/huntWC.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var huntXD = L.icon({
+		iconUrl:	'icons/huntXD.png',
+		iconRetinaUrl:	'icons/huntXD.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var keepDR = L.icon({
+		iconUrl:	'icons/keepDR.png',
+		iconRetinaUrl:	'icons/keepDR.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var keepTE = L.icon({
+		iconUrl:	'icons/keepTE.png',
+		iconRetinaUrl:	'icons/keepTE.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var keepUA = L.icon({
+		iconUrl:	'icons/keepUA.png',
+		iconRetinaUrl:	'icons/keepUA.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var keepWC = L.icon({
+		iconUrl:	'icons/keepWC.png',
+		iconRetinaUrl:	'icons/keepWC.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var keepXD = L.icon({
+		iconUrl:	'icons/keepXD.png',
+		iconRetinaUrl:	'icons/keepXD.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var mineDR = L.icon({
+		iconUrl:	'icons/mineDR.png',
+		iconRetinaUrl:	'icons/mineDR.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var mineTE = L.icon({
+		iconUrl:	'icons/mineTE.png',
+		iconRetinaUrl:	'icons/mineTE.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var mineUA = L.icon({
+		iconUrl:	'icons/mineUA.png',
+		iconRetinaUrl:	'icons/mineUA.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var mineWC = L.icon({
+		iconUrl:	'icons/mineWC.png',
+		iconRetinaUrl:	'icons/mineWC.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var mineXD = L.icon({
+		iconUrl:	'icons/mineXD.png',
+		iconRetinaUrl:	'icons/mineXD.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var monsterDR = L.icon({
+		iconUrl:	'icons/monsterDR.png',
+		iconRetinaUrl:	'icons/monsterDR.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var monsterTE = L.icon({
+		iconUrl:	'icons/monsterTE.png',
+		iconRetinaUrl:	'icons/monsterTE.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var monsterUA = L.icon({
+		iconUrl:	'icons/monsterUA.png',
+		iconRetinaUrl:	'icons/monsterUA.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var monsterWC = L.icon({
+		iconUrl:	'icons/monsterWC.png',
+		iconRetinaUrl:	'icons/monsterWC.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var monsterXD = L.icon({
+		iconUrl:	'icons/monsterXD.png',
+		iconRetinaUrl:	'icons/monsterXD.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var poiDR = L.icon({
+		iconUrl:	'icons/poiDR.png',
+		iconRetinaUrl:	'icons/poiDR.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var poiTE = L.icon({
+		iconUrl:	'icons/poiTE.png',
+		iconRetinaUrl:	'icons/poiTE.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var poiUA = L.icon({
+		iconUrl:	'icons/poiUA.png',
+		iconRetinaUrl:	'icons/poiUA.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var poiWC = L.icon({
+		iconUrl:	'icons/poiWC.png',
+		iconRetinaUrl:	'icons/poiWC.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var poiXD = L.icon({
+		iconUrl:	'icons/poiXD.png',
+		iconRetinaUrl:	'icons/poiXD.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var poiParty = L.icon({
+		iconUrl:	'icons/poiParty.png',
+		iconRetinaUrl:	'icons/poiParty.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var portDR = L.icon({
+		iconUrl:	'icons/portDR.png',
+		iconRetinaUrl:	'icons/portDR.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var portTE = L.icon({
+		iconUrl:	'icons/portTE.png',
+		iconRetinaUrl:	'icons/portTE.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var portUA = L.icon({
+		iconUrl:	'icons/portUA.png',
+		iconRetinaUrl:	'icons/portUA.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var portWC = L.icon({
+		iconUrl:	'icons/portWC.png',
+		iconRetinaUrl:	'icons/portWC.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var portXD = L.icon({
+		iconUrl:	'icons/portXD.png',
+		iconRetinaUrl:	'icons/portXD.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var schoolDR = L.icon({
+		iconUrl:	'icons/schoolDR.png',
+		iconRetinaUrl:	'icons/schoolDR.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var schoolTE = L.icon({
+		iconUrl:	'icons/schoolTE.png',
+		iconRetinaUrl:	'icons/schoolTE.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var schoolUA = L.icon({
+		iconUrl:	'icons/schoolUA.png',
+		iconRetinaUrl:	'icons/schoolUA.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var schoolWC = L.icon({
+		iconUrl:	'icons/schoolWC.png',
+		iconRetinaUrl:	'icons/schoolWC.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var schoolXD = L.icon({
+		iconUrl:	'icons/schoolXD.png',
+		iconRetinaUrl:	'icons/schoolXD.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var ruinDR = L.icon({
+		iconUrl:	'icons/ruinDR.png',
+		iconRetinaUrl:	'icons/ruinDR.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var ruinTE = L.icon({
+		iconUrl:	'icons/ruinTE.png',
+		iconRetinaUrl:	'icons/ruinTE.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var ruinUA = L.icon({
+		iconUrl:	'icons/ruinUA.png',
+		iconRetinaUrl:	'icons/ruinUA.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var ruinWC = L.icon({
+		iconUrl:	'icons/ruinWC.png',
+		iconRetinaUrl:	'icons/ruinWC.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var ruinXD = L.icon({
+		iconUrl:	'icons/ruinXD.png',
+		iconRetinaUrl:	'icons/ruinXD.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var templeDR = L.icon({
+		iconUrl:	'icons/templeDR.png',
+		iconRetinaUrl:	'icons/templeDR.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var templeTE = L.icon({
+		iconUrl:	'icons/templeTE.png',
+		iconRetinaUrl:	'icons/templeTE.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var templeUA = L.icon({
+		iconUrl:	'icons/templeUA.png',
+		iconRetinaUrl:	'icons/templeUA.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var templeWC = L.icon({
+		iconUrl:	'icons/templeWC.png',
+		iconRetinaUrl:	'icons/templeWC.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var templeXD = L.icon({
+		iconUrl:	'icons/templeXD.png',
+		iconRetinaUrl:	'icons/templeXD.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var townDR = L.icon({
+		iconUrl:	'icons/townDR.png',
+		iconRetinaUrl:	'icons/townDR.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var townTE = L.icon({
+		iconUrl:	'icons/townTE.png',
+		iconRetinaUrl:	'icons/townTE.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var townUA = L.icon({
+		iconUrl:	'icons/townUA.png',
+		iconRetinaUrl:	'icons/townUA.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var townWC = L.icon({
+		iconUrl:	'icons/townWC.png',
+		iconRetinaUrl:	'icons/townWC.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var townXD = L.icon({
+		iconUrl:	'icons/townXD.png',
+		iconRetinaUrl:	'icons/townXD.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var villageDR = L.icon({
+		iconUrl:	'icons/villageDR.png',
+		iconRetinaUrl:	'icons/villageDR.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var villageTE = L.icon({
+		iconUrl:	'icons/villageTE.png',
+		iconRetinaUrl:	'icons/villageTE.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var villageUA = L.icon({
+		iconUrl:	'icons/villageUA.png',
+		iconRetinaUrl:	'icons/villageUA.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var villageWC = L.icon({
+		iconUrl:	'icons/villageWC.png',
+		iconRetinaUrl:	'icons/villageWC.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+	var villageXD = L.icon({
+		iconUrl:	'icons/villageXD.png',
+		iconRetinaUrl:	'icons/villageXD.png',
+		shadowUrl:	'scripts/images/marker-shadow.png',
+		iconSize:	[25, 41],
+		iconAnchor:	[12, 41],
+		popupAnchor:	[1, -34],
+		tooltipAnchor:	[16, -28],
+		shadowSize:	[41, 41]
+		});
+  //Markers
+    var te_aurum = L.marker([50.958427, -88.242187], {icon: capitalTE}).bindPopup('<b>Aurum</b><br></br>The capital city of the Torosto Empire. A huge metropolis filled with sprawling bazaars and markets. Merchants and artisans of all kind can be found within the golden walls of Aurum, and it is all carefully controlled by Empress Ilma.').addTo(map);
+	var te_mistrun = L.marker([55.279115, -96.943359], {icon: mineTE}).bindPopup('<b>Mistrun</b><br></br>Each morning, the citizens of Mistrun arise to the dense mist rolling off of the Mistfall Mountains that envelops the entire area. The smallest of the Empire&#39;s mining towns, the mines of Mistrun carefully harvest the delicate crystals that grow abundantly within the surrounding mountains.').addTo(map);
+	var te_morranca = L.marker([21.289374, -108.896484], {icon: portTE}).bindPopup('<b>Morranca</b><br></br>The boisterous docks of Morranca portray the constant hustle and bustle of the Empire&#39;s main port city. A well-valued stop on most trade routes, Morranca is constantly flowing with travelers and their cargo. Among the gleaming streets and angular buildings, buskers and merchants vie for the attention of any and all with a few coins in their pockets.').addTo(map);
+	var te_wenstry = L.marker([35.029996, -72.985547], {icon: townTE}).bindPopup('<b>Wenstry</b><br></br>A modest town, Wenstry most commonly acts as a waystop for those traveling to other, more notable towns among the Torosto Empire. Featuring some of the finest inns and taverns of Eramor, Wenstry prides itself on its hospitality and accommodations.').addTo(map);
+	var te_dyrst = L.marker([47.517201, -67.587891], {icon: farmTE}).bindPopup('<b>Dyrst</b><br></br>The vineyards and orchards of Dyrst stretch almost as far as the eye can see and supply most of the Empire with a myriad of plump, juicy fruits. Home to Wingeard Feristal, the self-proclaimed finest winery in all of Eramor, the citizens of Dysrt often take part in great feasts and wine competitions to showcase their unique combinations of flavors.').addTo(map);
+	var te_lokstead = L.marker([-2.196727, -77.34375], {icon: portTE}).bindPopup('<b>Lokstead</b><br></br>The austere town of Lokstead was only recently acquired by the Torosto Empire within the past few years. Unlike other settlements within the Empire, Lokstead does not live in abundance and plenty. Relatively sequestered with little natural resources in the surrounding landscape, the citizens of Lokstead have learned to adapt and make-do with the resources available.').addTo(map);
+	var te_montaplume = L.marker([16.972741, -48.515625], {icon: keepTE}).bindPopup('<b>Montaplume</b><br></br>Montaplume is infamous for stationing the standing army that once threatened Drizar over a century ago before its rise into the skies above Eramor. This large, fortified city is where the Empire trains its soldiers and holds the largest number of Torostoan military units outside of the capital.').addTo(map);
+	var te_odenya = L.marker([38.203655, -42.978516], {icon: townTE}).bindPopup('<b>Odenya</b><br></br>Odenya sits with warm beds and plentiful market stalls for those who journey along the treacherous Yundor&#39;s Pass through the Tanglo Mountains. A welcome sight for the weak and weary travelers, Odenya is frequently lauded as a traveeler&#39;s oasis.').addTo(map);
+	var te_ursmor_keep = L.marker([38.341656, -24.785156], {icon: keepTE}).bindPopup('<b>Ursmor Keep</b><br></br>Ursmor Keep sits at the entrance of Yundor&#39;s Pass, its hardened guides and pathfinders ready to offer their services. Highly trained in the art of tracking, wayfinding, combat, and first aid, the Waymakers instructed within the keep city are highly sought after by those needing to travel through Yundor&#39;s Pass or into the Field of Beasts.').addTo(map);
+	var dr_ursgate = L.marker([-42.617791, -116.455078], {icon: capitalDR}).bindPopup('<b>Ursgate</b><br></br>The capital city of the Dandari Republic. Though still recovering from the recent political restructuring and attempted demonic invasion, this bustling city consists of many specialized districts with much to offer. The Council of Eight strives to maintain a just and fair nation while rebuilding what was left behind by the Kutavric.').addTo(map);
+	var dr_ornsway = L.marker([-32.546813, -77.695313], {icon: townDR}).bindPopup('<b>Ornsway</b><br></br>Situated just off the historic Earthenkeel Bridge, Ornsway was the home of the legendary wizard Elias Gorsmar. With a small mage academy built around his old tower, Ornsway bustles with young hedge wizards and hopeful young spellcasters.').addTo(map);
+	var dr_kynsgard = L.marker([-56.267761, -92.460937], {icon: templeDR}).bindPopup('<b>Kynsgard</b><br></br>Kynsgard is well known for its lumber production, maintaining acres and acres of trees to the northeast of the city. While Kynsgard boasts some of the finest woodworkers, it is also home to the awe-inspiring Mirrorlight Cathedral. As much a work of art as a place of worship, this grand temple was constructed by followers of Brahzun ages ago.').addTo(map);
+	var dr_port_cassian = L.marker([-64.699105, -70.839844], {icon: portDR}).bindPopup('<b>Port Cassian</b><br></br>The bustling city of Port Cassian is a veritable melting pot of cultures and cuisine. The shorelines surrounding Port Cassian teem with coral reefs and exotic underwater fauna, making it a popular tourist destination for water-loving individuals.').addTo(map);
+	var dr_mellowbrook = L.marker([-51.944265, -58.710938], {icon: huntDR}).bindPopup('<b>Mellowbrook</b><br></br>On the shoreline of Lake Heron and nestled within Aria Woods, the town of Mellowbrook is entirely self-sufficient. Many describe this town as being rather unwelcoming of outsiders and secretive.').addTo(map);
+	var dr_rinsfield = L.marker([-31.952162, -16.347656], {icon: fieldDR}).bindPopup('<b>Rinsfield</b><br></br>The newest addition to the Dandari Republic, Rinsfield is a small farming village with lofty hopes of growth after joining the Republic.').addTo(map);
+	var dr_moorhold = L.marker([-59.888937, -1.054688], {icon: portDR}).bindPopup('<b>Moorhold</b><br></br>Once the prison city of the Kutavric, Moorhold has undergone major reconstruction to become a more hospitable place to live. However, the Korvair is still in operation and houses some of the nation&#39;s most dangerous criminals.').addTo(map);
+	var xd_xenith = L.marker([-49.325122, 75.410156], {icon: capitalXD}).bindPopup('<b>Xenith</b><br></br>The ruined capital of the Xenarch Dominion. The remnants of this once-great city still linger, largely undisturbed. Many expeditions have attempted to delve into what remains of Xenith, but most find the perils of the Wasteland too dire to overcome.').addTo(map);
+	var xd_xurnix = L.marker([-30.826781, 105.644531], {icon: ruinXD}).bindPopup('<b>Xurnix</b><br></br>As the northernmost ruin of the Wasteland, Xurnix is the most widely researched and explored city of the devastated Xenarch Dominion. Many scholars hope to uncover what transpired within the Dominion from the traces left behind in the explosion.').addTo(map);
+	var xd_xurcon = L.marker([-44.024422, 124.804688], {icon: ruinXD}).bindPopup('<b>Xurcon</b><br></br>Once a great city rivaling even that of the capital, Xurcon boasts the large, spiraling towers that were once a part of its legendary academy. Now largely reduced to rubble with little rediscovered, Xurcon holds untold secrets.').addTo(map);
+	var xd_xarthii = L.marker([-62.552857, 123.837891], {icon: ruinXD}).bindPopup('<b>Xarthii</b><br></br>The port city of Xarthii held the most fantastical bazaars and markets. Since the explosion, however, the waters near port almost seem to have a mind of their own and repel even the sturdiest ships from its shores.').addTo(map);
+	var wc_osana = L.marker([4.915833, 97.03125], {icon: capitalWC}).bindPopup('<b>Osana</b><br></br>The capital city of the Wyrmsrest Concordat. A large port metropolis filled with all manner of temples, libraries, and even a prestigioud university. The Amethyst Chateau rises from the middle of the city, its purple-hued stone housing King Aradorr and his loyal advisors.').addTo(map);
+	var wc_stonecradle = L.marker([13.325485, 73.300781], {icon: cityWC}).bindPopup('<b>Stonecradle</b><br></br>This large town is safely nestled within the central base of the Ridgeback Peaks. Stonecradle is home to the Silver Monastery, where nearly all of those trained in the way of the Lunar Dance receive their tutelage. Life within this town is generally rather plain and unassuming.').addTo(map);
+	var wc_cranesward = L.marker([28.767659, 119.794922], {icon: cityWC}).bindPopup('<b>Cranesward</b><br></br>This city sits at the base of the eastern tip of the Ridgeback Peaks. Cranesward was originally a small mining village that grew exponentially upon the discovery of several gemstone veins within the depths of the mountain.').addTo(map);
+	var wc_lakecrest = L.marker([-13.581921, 90.087891], {icon: farmWC}).bindPopup('<b>Lakecrest</b><br></br>A small town sitting on the edge of Honor&#39;s Lake. Lakecrest has largely recovered from the destruction wrought by the Kutavric during the war and has returned to its peaceful, idyllic lifestyle. Mainly a farming and fishing town, Lakecrest provides much of the Concordat&#39;s produce and grain.').addTo(map);
+	var ua_drizar = L.marker([14.264383, -22.5], {icon: schoolUA}).bindPopup('<b>Drizar</b><br></br>A city that floats in the air above Eramor thanks to the efforts and sacrifices of mages centuries ago. Drizar is home to the prestigious Erhan Academy, which boasts the finest mages the continent has to offer. The nearby mountaintops east of Drizar house the Urvelu Hatchery and Ondrin Academy which work together to train the elite force known as the Wyvern Riders.').addTo(map);
+	var ua_breezeway = L.marker([-60.500252, 33.486328], {icon: townUA}).bindPopup('<b>Breezeway</b><br></br>Founded at the base of Mount Melosa, this aptly-named town always has a refreshing breeze blowing through. Amid the ever-tinkling windchimes of Breezeway, locals leisurely stroll from errand to errand between tending the lush vineyards just outside of town.').addTo(map);
+	var ua_mallowroot = L.marker([-44.840291, 5.976563], {icon: huntUA}).bindPopup('<b>Mallowroot</b><br></br>Nestled within Erislen Forest, Mallowroot is a small town that focuses on sustainable hunting practices and living in tandem with the surrounding landscape. Many travelers speak of the legendary tracking skills the hunters of this town possess.').addTo(map);
+	var ua_crownfall = L.marker([-40.713956, 45.878906], {icon: mineUA}).bindPopup('<b>Crownfall</b><br></br>Sitting at the base of the Starfall Peaks, Crownfall is nestled within the canyon created from the impact of a meteor long ago. Boasting rich iron mines, Crownfall&#39;s economy centers around the products of its mines, blacksmiths, and artisans.').addTo(map);
+	var ua_kanrik = L.marker([-20.385825, 1.494141], {icon: townUA}).bindPopup('<b>Kanrik</b><br></br>A small fishing village away from main trading routes, Kanrik has little to offer outsiders and rarely receives vistors. As such, its citizens live in relative seclusion and isolation.').addTo(map);
+	var ua_renwrath = L.marker([10.228437, 38.847656], {icon: ruinUA}).bindPopup('<b>Renwrath</b><br></br>Once a sister city to Everkeep, Renwrath has been abandoned for centuries after its historic defeat at the hands of Irrelith, the Monstrous Scourge of the Plains. Now rumored to house criminals and ne&#39;er-do-wells, Renwrath is widely avoided by the denizens of Eramor.').addTo(map);
+	var ua_banwick = L.marker([-23.885838, -59.0625], {icon: cityUA}).bindPopup('<b>Banwick</b><br></br>On the western side of the Hearthmourn Mountains, a large portion of Banwick resides within the mountain itself. The stonemasons of Banwick masterfully carve out expansive buildings and caverns from the dark stone of the Hearthmourn.').addTo(map);
+	var ua_everkeep = L.marker([54.826008, 84.111328], {icon: keepUA}).bindPopup('<b>Everkeep</b><br></br>A large and prosperous city, thanks to its abundant fleet of fishing ships, Everkeep proudly stands as a powerhouse of the frigid northeastern portion of Eramor.').addTo(map);
+	var ua_mistmeet = L.marker([55.078367, -3.867188], {icon: portUA}).bindPopup('<b>Mistmeet</b><br></br>The waves crashing upon this port city frequently enshroud this city in mist. Though cold and damp, Mistmeet&#39;s residents remain a jovial bunch prone to celebrate at every opportunity.').addTo(map);
+	var ua_pointcrest = L.marker([57.421294, 132.099609], {icon: townUA}).bindPopup('<b>Pointcrest</b><br></br>A fire among the frozen landscape of the northeast, the town of Pointcrest focuses on survival. With trade routes inaccessible for the majority of the year, the citizens of Pointcrest are hardy, resilient folk who can weather any storm.').addTo(map);
+	var ua_korsmead = L.marker([33.94336, 26.630859], {icon: cityUA}).bindPopup('<b>Korsmead</b><br></br>Located off of Rowena&#39;s Rest, the city of Korsmead has a reputation of dark dealings. Taken over by an unsavory group of thieves and thugs, Korsmead has fallen into disgrace and disrepair.').addTo(map);
+	var ua_lynnrest = L.marker([37.509726, 6.855469], {icon: townUA}).bindPopup('<b>Lynnrest</b><br></br>The pleasant town of Lynnrest is known for its slow, easy-going lifestyle. A popular vacation spot for the nobility of Eramor, Lynnrest is split between the upper and lower districts.').addTo(map);
+	var ua_mournbreak = L.marker([41.574361, 60.205078], {icon: mineUA}).bindPopup('<b>Mournbreak</b><br></br>A simple mining town, the mines of Mournbreak supply much of the northern regions of Eramor with coal and ore.').addTo(map);
+	var ua_primwell = L.marker([52.643063, 34.628906], {icon: farmUA}).bindPopup('<b>Primwell</b><br></br>The rugged farmers of Primwell produce equally hardy vegetables that allow many northeastern cities to survive through the harsh winters.').addTo(map);
+	var ua_atlaroth = L.marker([-22.593726, -148.359375], {icon: cityUA}).bindPopup('<b>Atlaroth</b><br></br>Located deep beneath the waves, the underwater city of Atlaroth was unknown to much of Eramor until two emissaries arrive to warn the Dandari Republic of the Discordic Conflux before it occurred. Though it has emerging relations with Ursgate, details of Atlaroth are still unknown to most in Eramor.').addTo(map);
+	var poi_spire_of_atonement = L.marker([-34.813803, 73.388672], {icon: poiUA}).bindPopup('<b>Spire of Atonement</b><br></br>This obsidian tower lies just outside the Wastes and is home to the mysterious entities that have been come to be known as "Reformers." Desperate individuals facing execution or life imprisonment may instead opt to be sent to the Spire of Atonement. After exactly three years within the tower, these individuals are released with no memory of their former life or their time within the spire.').addTo(map);
+	var poi_verdant_sanctuary = L.marker([-36.102376, -58.183594], {icon: druidUA}).bindPopup('<b>Verdant Sanctuary</b><br></br>The largest collection of druids in Eramor, the Verdant Sanctuary reside somewhere deep within the Winding Woods. Seeking to maintain a delicate balance of civilization and nature, the Verdant Sanctuary leave the forests they call home when this balance is in jeopardy.').addTo(map);
+	var poi_the_roving_clans = L.marker([-13.325485, 43.242188], {icon: poiUA}).bindPopup('<b>The Roving Clans</b><br></br>The hardy folk of the roving clans have lived a nomadic lifestyle on the Plain of Beasts for as long as any can remember. The colorful, streaming banners of the roving clans mark a temporary safe haven among the dangers of the Plains for any who take the risk of traveling through the tall grasses.').addTo(map);
+	var poi_the_volcanic_isles = L.marker([6.664608, -91.40625], {icon: poiTE}).bindPopup('<b>The Volcanic Isles</b><br></br>Consisting of four volcanic islands, the Volcanic Isles are known for their fertile land and succulent produce. However, travel amongst the islands is not without peril: an ancient dragon turle known as Erasthmitrex prowls the waters and has no qualms sinking those who invade "his" realm.').addTo(map);
+	var poi_featherplume_reach = L.marker([-51.179343, 28.476563], {icon: poiUA}).bindPopup('<b>Featherplume Reach</b><br></br>The peak of Mount Melosa, Featherplume Reach is the source of many miraculous legends for the locals living in Breezeway.').addTo(map);
+	var poi_the_iron_grove = L.marker([-33.578015, -40.078125], {icon: poiUA}).bindPopup('<b>The Iron Grove</b><br></br>Created in a joint effort by the Verdant Sanctuary and the Order of the Everbloom, the Iron Grove features a unique specimen of trees. These trees grow sharp, metallic leaves with properties akin to mundane metals, and the bark can be harvested to create a natural armor with the strength of steel.').addTo(map);
+	var poi_chimeric_plains = L.marker([-54.367759, -122.34375], {icon: monsterDR}).bindPopup('<b>The Chimeric Plains</b><br></br>As the name suggests, the Chimeric Plains boasts a menagerie of strange creatures. Whether the result of careless mages, strange evolution, or dark experimentation, most of these creatures possess features of multiple mundane creatures.').addTo(map);
+	var poi_arbor_reducta = L.marker([-51.344339, 101.601563], {icon: poiXD}).bindPopup('<b>Arbor Reducta</b><br></br>The ruined trunk of an immense tree, the Arbor Reducta is streaked through with opalescent veins. Who knows what the strange magics of the waste have done to this once magnificent tree.').addTo(map);
+	var poi_urvelu_ondrin = L.marker([-0.175781, -9.931641], {icon: poiUA}).bindPopup('<b>Urvelu Hatchery and Ondrin Academy</b><br></br>The Urvelu Hatchery remains the sole establishment of Eramor capable of rearing wyverns willing to bond with people. At the adjoining Ondrin Academy, future Wyvern Riders are trained to work in concert with their bonded wyvern companion.').addTo(map);
+	var poi_the_field_of_beasts = L.marker([-6.315299, 16.875], {icon: monsterUA}).bindPopup('<b>The Field of Beasts</b><br></br>The central region of Eramor features lush, sprawling plains. However, among the tall grasses lurk all manner of savage beasts that eagerly hunt those who try to settle the land.').addTo(map);
+	var poi_echoing_caverns = L.marker([4.82826, 69.697266], {icon: poiWC}).bindPopup('<b>The Echoing Caverns</b><br></br>The walls of this natural cavern system are highly reflective and are said to reveal one&#39;s true self. Those who venture into the depths often speak of strange, life-altering events that serve to reshape their very being.').addTo(map);
+	var poi_threshing_depths = L.marker([-61.773123, 66.796875], {icon: monsterUA}).bindPopup('<b>The Threshing Depths</b><br></br>Plagued by whirlpools, violent storms, and sea monsters, most trade ships will add days of travel to their routes in order to avoid this dangerous area.').addTo(map);
+	var poi_dc_point = L.marker([-40.730608, -129.243164], {icon: poiDR}).bindPopup('<b>Point of the Discordic Conflux</b><br></br>This now leveled mountaintop bares deep gouges and scorch marks from the rift that once allowed a host of demons to flood into Eramor, ravaging the surrounding area.').addTo(map);
+	var poi_crystal_isle = L.marker([-3.864255, 125.332031], {icon: poiWC}).bindPopup('<b>Crystal Isle</b><br></br>A mysterious island covered in gargantuan crystalline growths. Combined with the savage creatures prowling the island, raging storms and crashing waves have dissuaded most from researching the interesting nature of this isle.').addTo(map);
+	var poi_aurora_isle = L.marker([62.267923, 119.53125], {icon: poiUA}).bindPopup('<b>Aurora Isle</b><br></br>This frozen landscape hints at a history lost to time through relics found buried beneath snow and ice.').addTo(map);
+	var poi_land_of_the_ancients = L.marker([-67.474922, -17.929688], {icon: monsterUA}).bindPopup('<b>Land of the Ancients</b><br></br>Seemingly untouched by time, this island features creatures that are rarely seen anywhere else in Eramor.').addTo(map);
+	//Marker Groups
+    var mg_Dendari_Republic = L.layerGroup([dr_ursgate,dr_ornsway,dr_kynsgard,dr_port_cassian,dr_mellowbrook,dr_rinsfield,dr_moorhold]);
+    var mg_Torosto_Empire = L.layerGroup([te_aurum,te_mistrun,te_morranca,te_wenstry,te_dyrst,te_lokstead,te_montaplume,te_odenya,te_ursmor_keep]);
+	var mg_Wyrmsrest_Concordat = L.layerGroup([wc_osana,wc_stonecradle,wc_cranesward,wc_lakecrest]);
+	var mg_Xenarch_Dominion = L.layerGroup([xd_xenith,xd_xurnix,xd_xurcon,xd_xarthii]);
+	var mg_Unaligned = L.layerGroup([ua_drizar,ua_breezeway,ua_mallowroot,ua_lynnrest,ua_kanrik,ua_renwrath,ua_banwick,ua_everkeep,ua_mistmeet,ua_pointcrest,ua_korsmead,ua_crownfall,ua_mournbreak,ua_primwell,ua_atlaroth]);
+	var mg_POI = L.layerGroup ([poi_spire_of_atonement,poi_verdant_sanctuary,poi_the_roving_clans,poi_the_volcanic_isles,poi_featherplume_reach,poi_the_iron_grove,poi_chimeric_plains,poi_arbor_reducta,poi_urvelu_ondrin,poi_the_field_of_beasts,poi_echoing_caverns,poi_threshing_depths,poi_dc_point,poi_crystal_isle,poi_aurora_isle,poi_land_of_the_ancients]);
+    //Marker Overlay
+    var overlays={
+        "Dendari Republic" : mg_Dendari_Republic,
+        "Torosto Empire" : mg_Torosto_Empire,
+		"Wyrmsrest Concordat" : mg_Wyrmsrest_Concordat,
+		"Xenarch Dominion" : mg_Xenarch_Dominion,
+		"Unaligned" : mg_Unaligned,
+		"Points of Interest" : mg_POI,
+		}
+    //GROUP CONTROLS
+    L.control.layers(null, overlays).addTo(map);
+	</script>
+  </body>
+</html>
